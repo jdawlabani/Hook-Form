@@ -1,5 +1,5 @@
 import {useState} from "react";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 const Form = (props) => {
     //First Name
     const [first, setFirst] = useState("")
@@ -23,26 +23,47 @@ const Form = (props) => {
         <>
             <form>
                 <div>
-                    <label className="text-danger">First Name: </label> 
+                    <label className="text-primary form-label">First Name: </label> 
                     <input className="form-control" type="text" value={first} onChange={ (e) => setFirst(e.target.value) } />
+                    {first.length < 2 && first.length > 0 ? (
+                        <p className="text-danger">First Name must be at least 2 characters</p>) :
+                        null
+                    }
                 </div>
                 <div>
-                    <label>Last Name: </label> 
-                    <input type="text" value={last} onChange={ (e) => setLast(e.target.value) } />
+                    <label className="text-primary form-label">Last Name: </label> 
+                    <input className="form-control" type="text" value={last} onChange={ (e) => setLast(e.target.value) } />
+                    {last.length < 2 && last.length > 0 ? (
+                        <p className="text-danger">Last Name must be at least 2 characters</p>) :
+                        null
+                    }
                 </div>
                 <div>
-                    <label>Email Address: </label> 
+                    <label className="text-primary form-label">Email Address: </label> 
                     <input className="form-control" type="email" value={email} onChange={ (e) => setEmail(e.target.value) } />
+                    {email.length < 5 && email.length > 0 ? (
+                        <p className="text-danger">Email must be at least 5 characters</p>) :
+                        null
+                    }
                 </div>
                 <div>
-                    <label>Password: </label>
+                    <label className="text-primary form-label">Password: </label>
                     <input className="form-control" type="password" value={password} onChange={ (e) => setPassword(e.target.value) } />
+                    {password.length < 8 && password.length > 0 ? (
+                        <p className="text-danger">Password must be at least 8 characters</p>) :
+                        null
+                    }
                 </div>
                 <div>
-                    <label>Confirm Password: </label> 
+                    <label className="text-primary form-label">Confirm Password: </label> 
                     <input className="form-control" type="password" value={confirm} onChange={ (e) => setConfirm(e.target.value) } />
+                    {confirm !== password ? (
+                        <p className="text-danger">Passwords do not match!</p>) :
+                        null
+                    }
                 </div>
             </form>
+            <h4>Form Data:</h4>
             <p>First Name: {first} </p>
             <p>Last Name: {last} </p>
             <p>Email: {email} </p>
